@@ -7,6 +7,7 @@ import EditarAluno from './aluno/Editar';
 import ListarAluno from './aluno/Listar';
 import Home from './home';
 import ListarAlunosAprovados from './aluno/ListarAprovados';
+import ListarPorCurso from './aluno/ListarPorCurso';
 import Signin from '../01 Signin/Signin';
 
 
@@ -21,6 +22,7 @@ const MinhaPage = () => {
                     <Route path='cadastrar-aluno' element={<CadastrarAluno />} />
                     <Route path='listar-aluno' element={<ListarAluno />} />
                     <Route path='listar-alunos-aprovados' element={<ListarAlunosAprovados />} />
+                    <Route path="/listar-alunos-por-curso" element={<ListarPorCurso />} />
                     <Route path='editar-aluno/:id' element={<EditarAluno />} />
                 </Routes>
             </Container>

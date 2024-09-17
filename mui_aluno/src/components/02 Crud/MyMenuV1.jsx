@@ -17,6 +17,7 @@ const MyMenu = () => {
     const dropMenu = (menuName) => {
         return (
             <Box>
+                {/*botão Menu Alunos- aparece as opões de listar criar e editar*/}
                 <Button 
                     sx={{color: '#fff'}}
                     onClick={handleOpenAnchorElAluno}
@@ -53,8 +54,19 @@ const MyMenu = () => {
                         component={Link}
                         to={`listar-${menuName.slice(0, menuName.length - 1)}s-aprovados`}
                     >
-                        Listar Alunos Aprovados
+                        Listar Todos Alunos 
                     </MenuItem>
+                    <MenuItem
+                        onClick={() => {
+                    handleCloseAnchorElAluno(); // Fecha o menu ao clicar
+                      }}
+                    component={Link}
+                        to="/listar-alunos-por-curso" // Atualiza o caminho para listar por curso
+                   >
+            Listar Por Curso
+        </MenuItem>
+                    
+
                 </Menu>
             </Box>
         );

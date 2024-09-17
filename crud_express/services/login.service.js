@@ -1,8 +1,8 @@
 const LoginModel = require('../models/login.models');
 
 let loginInfo = {
-    login: 'aluno',
-    senha: 'alunoufc'
+    login: 'Lucas',
+    senha: 'lucas0467'
 };
 
 // Serviço que compara os dados recebidos para login com os dados cadastrados localmente:

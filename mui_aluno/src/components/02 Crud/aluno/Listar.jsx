@@ -69,7 +69,8 @@ const ListarAlunos = () => {
                                         sx={{
                                             // Colocando a linha vermelha caso o ira do aluno fique abaixo da média do ira da turma:
                                             // Note que estamos chamando o método calcularMedia:
-                                            background: aluno.ira < calcularMedia() ? '#ff3838 !important' : '',
+                                           //background: aluno.ira < calcularMedia() ? '#ff3838 !important' : '',
+                                            //background: aluno.ira >= calcularMedia() ? '#ff3838 !important' : '',
                                         }}
                                     >
                                         <StyledTableCell>{aluno._id}</StyledTableCell>
@@ -100,9 +101,10 @@ const ListarAlunos = () => {
                                 )
                             })
                         }
-                        <StyledTableRow>
+                        <StyledTableRow style={{ backgroundColor: '#008000', fontWeight: 'bold' }}>
                             <StyledTableCell colSpan={4}>MÉDIA IRA:</StyledTableCell>
                             <StyledTableCell>{calcularMedia().toFixed(2)}</StyledTableCell>
+                            
                         </StyledTableRow>
                     </TableBody>
                 </Table>

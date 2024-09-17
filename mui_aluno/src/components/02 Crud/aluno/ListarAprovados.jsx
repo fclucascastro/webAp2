@@ -10,8 +10,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const ListarAlunosAprovados = () => {
     const [alunos, setAlunos] = useState([]);
-    // Variável de estado para guardar os alunos que têm o ira igual ou acima da meédia da turma.
-    const [alunosAprovados, setAlunosAprovados] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,14 +17,6 @@ const ListarAlunosAprovados = () => {
             .then(async res => setAlunos(await res.json()))
             .catch(error => console.log('Não foi possível recuperar os alunos cadastrados', error));
     }, []);
-
-    // Quando os alunos forem carregados, os alunos aprovados são filtrados e armazenados na variável de estado adequada:
-    useEffect(() => {
-        const mediaIra = calcularMedia();
-        let aux = [];
-        aux = alunos.filter(aluno => aluno.ira >= mediaIra);
-        setAlunosAprovados([...aux]);
-    }, [alunos]);
 
     function deleteAlunoById(id) {
         if(window.confirm("Deseja Excluir?")) {
@@ -58,7 +48,7 @@ const ListarAlunosAprovados = () => {
 
     return (
         <>
-            <Typography variant="h5" fontWeight="bold">Listar Alunos Aprovados</Typography>
+            <Typography variant="h5" fontWeight="bold">Listar Alunos</Typography>
             <TableContainer component={Paper} sx={{mt:4, mb:4}}>
                 <Table sx={{minWidth:650}} aria-label="simple table">
                     <TableHead>
@@ -72,11 +62,17 @@ const ListarAlunosAprovados = () => {
                     </TableHead>
                     <TableBody>
                         {
-                            // Mapeando os alunos aprovados na tabela de listagem:
-                            alunosAprovados.map(aluno => {
+                            alunos.map(aluno => {
                                 return (
                                     <StyledTableRow 
                                         key={aluno._id}
+                                        
+                                       sx={{
+
+                                    
+                                            background: aluno.ira < calcularMedia() ? '#ff3838 !important' : '',
+                                        }}
+                                    
                                     >
                                         <StyledTableCell>{aluno._id}</StyledTableCell>
                                         <StyledTableCell>{aluno.nome}</StyledTableCell>
@@ -106,9 +102,10 @@ const ListarAlunosAprovados = () => {
                                 )
                             })
                         }
-                        <StyledTableRow>
+                        <StyledTableRow style={{ backgroundColor: '#008000', fontWeight: 'bold' }}>
                             <StyledTableCell colSpan={4}>MÉDIA IRA:</StyledTableCell>
                             <StyledTableCell>{calcularMedia().toFixed(2)}</StyledTableCell>
+                            
                         </StyledTableRow>
                     </TableBody>
                 </Table>
